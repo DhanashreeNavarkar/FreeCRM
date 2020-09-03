@@ -43,7 +43,7 @@ public class ContactsPageTest extends TestBase{
 	@Test(priority = 2)
 	public void validateNewContact() {
 		homePage.clickOnNewContact();
-		contactPage.createNewContact("Ramcharan", "Teja", "ramcharan@gamil.com", "Chennai");
+		contactPage.createNewContact("Rishi", "Muni", "rishimuni@gamil.com", "Chennai");
 	}
 	
 	
