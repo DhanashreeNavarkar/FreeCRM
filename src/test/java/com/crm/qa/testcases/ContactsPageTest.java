@@ -19,7 +19,7 @@ public class ContactsPageTest extends TestBase{
 	ContactsPage contactPage;
 	TestUtil testUtil;
 	
-	String sheetName = "contact";
+	String sheetName = "Sheet1";				//Enter the name of the sheet not the workbook
 	
 	public ContactsPageTest() {
 		super();
@@ -40,28 +40,27 @@ public class ContactsPageTest extends TestBase{
 		Assert.assertTrue(contactPage.contactLabel(), "Contacts label missing on page");
 	}
 	
-	@Test(priority = 2)
-	public void validateNewContact() {
-		homePage.clickOnNewContact();
-		contactPage.createNewContact("Rishi", "Muni", "rishimuni@gamil.com", "Chennai");
+//	@Test(priority = 2)
+//	public void validateNewContact() {
+//		homePage.clickOnNewContact();
+//		contactPage.createNewContact("Rishi", "Muni", "rishimuni@gamil.com", "Chennai");
+//	}
+		
+	@DataProvider
+	public Object[][] getCRMTestData(){
+		
+		Object data[][] = TestUtil.getTestData(sheetName);
+		return data;
+		
 	}
 	
+	@Test(priority = 2, dataProvider = "getCRMTestData")
+	public void validateNewContact(String firstName, String lastName, String email, String address) {
+		homePage.clickOnNewContact();
+		//contactPage.createNewContact("Dhanashree", "Navarkar", "dsn@gamil.com", "Pune");
+		contactPage.createNewContact(firstName, lastName, email, address);
+	}
 	
-//	@DataProvider
-//	public Object[][] getCRMTestData(){
-//		
-//		Object data[][] = TestUtil.getTestData(sheetName);
-//		return data;
-//		
-//	}
-//	
-//	@Test(priority = 2, dataProvider = "getCRMTestData")
-//	public void validateNewContact(String firstName, String lastName, String email, String address) {
-//		homePage.clickOnNewContact();
-//		//contactPage.createNewContact("Dhanashree", "Navarkar", "dsn@gamil.com", "Pune");
-//		contactPage.createNewContact(firstName, lastName, email, address);
-//	}
-//	
 	
 	
 	@AfterMethod
